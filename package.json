@@ -29,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "aws s3 sync ./build s3://spartastatic --profile=reality023",
-    "server-start": "json-server --watch db.json --port 5001"
+    "server-start" : "json-server --watch db.json --port 5005"
   },
   "eslintConfig": {
     "extends": [
