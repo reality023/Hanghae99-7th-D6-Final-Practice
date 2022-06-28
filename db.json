@@ -1,0 +1,26 @@
+{
+  "signup": [
+    {
+      "username": "asd",
+      "nickname": "asd",
+      "imgPath": null,
+      "password": "asdasd",
+      "id": 3
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "username": "asd",
+      "password": "asd",
+      "id": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

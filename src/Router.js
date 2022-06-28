@@ -14,7 +14,7 @@ function Router() {
         <Route path="/main" element={<Main />} />
         <Route path="/search" element={<Search />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/social" element={<Social />} />
         <Route path="/" element={<Login />} />
         <Route path="*" element={<NotFound />} />
