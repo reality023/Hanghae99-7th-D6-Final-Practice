@@ -6,6 +6,41 @@
       "imgPath": null,
       "password": "asdasd",
       "id": 3
+    },
+    {
+      "username": "metga",
+      "nickname": "metga",
+      "imgPath": null,
+      "password": "alalal",
+      "id": 4
+    },
+    {
+      "username": "asd",
+      "nickname": "asd",
+      "imgPath": null,
+      "password": "asd",
+      "id": 5
+    },
+    {
+      "username": "asd",
+      "nickname": "asd",
+      "imgPath": null,
+      "password": "asd",
+      "id": 6
+    },
+    {
+      "username": "asd",
+      "nickname": "asd",
+      "imgPath": null,
+      "password": "asd",
+      "id": 7
+    },
+    {
+      "username": "asd",
+      "nickname": "asd",
+      "imgPath": null,
+      "password": "asd",
+      "id": 8
     }
   ],
   "user": [
@@ -20,7 +55,7 @@
       "id": 2
     }
   ],
-  "profile": {
-    "name": "typicode"
+  "login": {
+    "token": "Eyalksdjf3k12344lsdhrwevvbdswyghsndftoken"
   }
 }

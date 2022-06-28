@@ -21,7 +21,7 @@ function Login() {
     let pw = pw_ref.current.value;
 
     if (id === "" || pw === "") {
-      alert("아이디, 닉네임, 비밀번호를 모두 입력해주세요.");
+      alert("아이디, 비밀번호를 모두 입력해주세요.");
       return;
     }
 

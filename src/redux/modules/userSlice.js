@@ -16,13 +16,14 @@ const userSlice = createSlice({
 });
 
 export const loginA = (username, password) => {
-  return async function () {
+  return async function (dispatch) {
     try {
-      const repsonse = await axios.post("http://localhost:5001/user", {
+      const response = await axios.get("http://localhost:5001/login", {
         username: username,
         password: password,
       });
-      console.log(repsonse);
+      console.log(response);
+      dispatch(checkLogin(response));
     } catch (error) {
       console.log(error);
     }
@@ -30,20 +31,21 @@ export const loginA = (username, password) => {
 };
 
 export const registerA = (username, nickname, password) => {
-  return async function () {
+  return async function (dispatch) {
     try {
-      const repsonse = await axios.post("http://localhost:5001/signup", {
+      const response = await axios.post("http://localhost:5001/signup", {
         username: username,
         nickname: nickname,
         imgPath: null,
         password: password,
       });
-      console.log(repsonse);
+      console.log(response);
+      dispatch(createUser(username, nickname, password));
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const { checkUser, createUser } = userSlice.actions;
+export const { checkLogin, createUser } = userSlice.actions;
 export default userSlice.reducer;
