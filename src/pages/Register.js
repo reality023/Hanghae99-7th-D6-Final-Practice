@@ -2,14 +2,18 @@
 import React from "react";
 // style
 import styled from "styled-components";
-// redux
-import { useDispatch } from "react-redux";
 // router
 import { useNavigate } from "react-router-dom";
+// redux
+import { useDispatch, useSelector } from "react-redux";
 // redux-toolkit
 import { registerA } from "../redux/modules/userSlice";
 
 function Register() {
+
+  const user_data = useSelector(state => state.user);
+  console.log(user_data);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
