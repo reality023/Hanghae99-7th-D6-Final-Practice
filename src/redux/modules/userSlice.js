@@ -26,8 +26,10 @@ export const loginA = (username, password) => {
       });
       dispatch(checkLogin(username, password));
       setToken(response.data.accessToken, response.data.refreshToken);
+      // localStorage.setItem("user_name", response.data.username); 아이디랑 닉네임을 더 넣어줄수도. 필요가있나 ?
+      // localStorage.setItem("user_id", response.data.nickname);
       alert("로그인 되었습니다");
-      window.location.replace("/");
+      // window.location.replace("/Main");
       console.log(response);
     } catch (error) {
       alert("아이디와 비밀번호를 확인해주세요");
@@ -40,10 +42,10 @@ export const registerA = (username, nickname, password) => {
   return async function (dispatch) {
     try {
       const response = await instance.post("/user/signup", {
-        username: username,
-        nickname: nickname,
+        username,
+        nickname,
+        password,
         imgPath: null,
-        password: password,
       });
       dispatch(createUser(username, nickname, password));
       alert(response.data.errorMsg);
