@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { removeToken, setToken } from '../shared/localStorage';
@@ -25,7 +24,7 @@ function GoogleLoginButton () {
       setToken(token.accessToken, token.refreshToken);
       console.log("로그인 성공");
     } catch (err) {
-      console.log(err);  
+      console.log(err);
     }
   }
 
