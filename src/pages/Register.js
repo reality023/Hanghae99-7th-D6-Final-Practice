@@ -10,7 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerA } from "../redux/modules/userSlice";
 
 function Register() {
-  const user_data = useSelector((state) => state);
+
+  const user_data = useSelector(state => state.user);
   console.log(user_data);
 
   const dispatch = useDispatch();
@@ -22,43 +23,27 @@ function Register() {
   const pwCheck_ref = React.useRef();
 
   const RegisterDispatch = () => {
-    const id = id_ref.current.value;
-    const nick = nick_ref.current.value;
-    const pw = pw_ref.current.value;
-    const pwCheck = pwCheck_ref.current.value;
+    let id = id_ref.current.value;
+    let nick = nick_ref.current.value;
+    let pw = pw_ref.current.value;
+    let pwCheck = pwCheck_ref.current.value;
 
-    // 유효성검사
     if (id === "" || pw === "" || nick === "") {
       alert("아이디, 닉네임, 비밀번호를 모두 입력해주세요.");
       return;
     }
-    // 이메일 검사: '@', '.' 이 둘다 포함될것.
-    // const isValidEmail =
-    //   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-    // if (isValidEmail.test(id)) {
-    //   alert("이메일 형식이 올바른지 확인해주세요!");
-    //   return false;
-    // }
-    // 비밀번호
+
     if (pw !== pwCheck) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return false;
+      alert("비밀번호가 일치하지 않습니다.");  
+      return;
     }
-    // const isValidPassword =
-    //   /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*#?&])[0-9a-zA-Z@$!%*#?&]{6,10}$/;
-    // if (!isValidPassword.test(pw)) {
-    //   alert(
-    //     "비밀번호는 6 ~ 10자 영문, 숫자 및 특수문자조합으로 입력해야합니다!"
-    //   );
-    //   return false;
-    // }
 
     dispatch(
       registerA(
         id_ref.current.value,
         nick_ref.current.value,
         pw_ref.current.value,
-        pwCheck_ref.current.value
+        pwCheck_ref.current.value,
       )
     );
     navigate("/");
@@ -69,7 +54,11 @@ function Register() {
       <h1>회원가입</h1>
       <LoginForm>
         <p>아이디</p>
-        <input type="email" ref={id_ref} placeholder="abc@naver.com"></input>
+        <input
+          type="email"
+          ref={id_ref}
+          placeholder="아이디를 입력해주세요"
+        ></input>
         <p>닉네임</p>
         <input
           type="text"
