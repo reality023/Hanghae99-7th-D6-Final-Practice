@@ -26,7 +26,7 @@ function Login() {
       alert("아이디, 비밀번호를 모두 입력해주세요.");
       return{};
     }
-    dispatch(loginA(id_ref.current.value, pw_ref.current.value));
+    dispatch(loginA(id, pw));
   };
 
   return (
@@ -48,7 +48,7 @@ function Login() {
       </LoginForm>
       <button onClick={() => LoginDispatch()}>로그인</button>
       <button onClick={() => navigate("/Register")}>회원가입</button>
-      <button onClick={() => removeToken()}>로그아웃</button>
+      <button onClick={() => removeToken(alert("로그아웃"))}>로그아웃</button>
     </Container>
   );
 }
