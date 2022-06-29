@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // redux-toolkit
 import { registerA } from "../redux/modules/userSlice";
-import * as yup from "yup";
 
 function Register() {
   const dispatch = useDispatch();
