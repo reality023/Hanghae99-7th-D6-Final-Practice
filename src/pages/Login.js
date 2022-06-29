@@ -5,29 +5,28 @@ import styled from "styled-components";
 // router
 import { useNavigate } from "react-router-dom";
 // redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // redux-toolkit
 import { loginA } from "../redux/modules/userSlice";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user_data = useSelector((state) => state.data);
 
   const id_ref = React.useRef();
   const pw_ref = React.useRef();
 
   const LoginDispatch = () => {
-    const id = id_ref.current.value;
-    const pw = pw_ref.current.value;
+    let id = id_ref.current.value;
+    let pw = pw_ref.current.value;
 
     if (id === "" || pw === "") {
-      alert("아이디, 비밀번호를 입력해주세요.");
-      return false;
-    }else{
-      dispatch(loginA(id, pw));
-      console.log(user_data);
+      alert("아이디, 비밀번호를 모두 입력해주세요.");
+      return;
     }
+
+    dispatch(loginA(id_ref.current.value, pw_ref.current.value));
+    navigate("/Main");
   };
 
   return (

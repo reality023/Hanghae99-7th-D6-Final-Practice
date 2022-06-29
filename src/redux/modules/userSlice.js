@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { instance } from "../../shared/axios";
-
-import { setToken } from "../../shared/localStorage";
+import axios from "axios";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: { list: [] },
+  initialState: { list: [], isLogin: false },
   reducers: {
     checkLogin: (state, action) => {
-      state.list.push(action.payload);
+      state.isLogin = action.payload;
     },
     createUser: (state, action) => {
       state.list.push(action.payload);
@@ -20,17 +18,13 @@ const userSlice = createSlice({
 export const loginA = (username, password) => {
   return async function (dispatch) {
     try {
-      const response = await instance.post("/user/login", {
+      const response = await axios.get("http://localhost:5001/login", {
         username: username,
         password: password,
       });
-      dispatch(checkLogin(username, password));
-      setToken(response.data.accessToken, response.data.refreshToken);
-      alert("로그인 되었습니다");
-      window.location.replace("/");
       console.log(response);
+      dispatch(checkLogin(response));
     } catch (error) {
-      alert("아이디와 비밀번호를 확인해주세요");
       console.log(error);
     }
   };
@@ -39,15 +33,14 @@ export const loginA = (username, password) => {
 export const registerA = (username, nickname, password) => {
   return async function (dispatch) {
     try {
-      const response = await instance.post("/user/signup", {
+      const response = await axios.post("http://localhost:5001/signup", {
         username: username,
         nickname: nickname,
         imgPath: null,
         password: password,
       });
-      dispatch(createUser(username, nickname, password));
-      alert(response.data.errorMsg);
       console.log(response);
+      dispatch(createUser(username, nickname, password));
     } catch (error) {
       console.log(error);
     }
