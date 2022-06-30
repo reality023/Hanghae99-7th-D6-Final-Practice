@@ -1,32 +1,26 @@
-// react
 import React from "react";
-// style
 import styled from "styled-components";
-// router
 import { useNavigate } from "react-router-dom";
-// redux
 import { useDispatch } from "react-redux";
-// redux-toolkit
-import { loginA, onSilentRefresh } from "../redux/modules/userSlice";
-// local storage - logout
+import { loginAction, onSilentRefresh } from "../redux/modules/userSlice";
 import { removeToken } from "../shared/localStorage";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const id_ref = React.useRef();
-  const pw_ref = React.useRef();
+  const idRef = React.useRef();
+  const pwRef = React.useRef();
 
   const LoginDispatch = () => {
-    let id = id_ref.current.value;
-    let pw = pw_ref.current.value;
+    let id = idRef.current.value;
+    let pw = pwRef.current.value;
 
     if (id === "" || pw === "") {
       alert("아이디, 비밀번호를 모두 입력해주세요.");
       return{};
     }
-    dispatch(loginA(id, pw));
+    dispatch(loginAction(id, pw));
   };
 
   return (
@@ -36,13 +30,13 @@ function Login() {
         <p>아이디</p>
         <input
           type="email"
-          ref={id_ref}
+          ref={idRef}
           placeholder="아이디를 입력해주세요"
         ></input>
         <p>비밀번호</p>
         <input
           type="password"
-          ref={pw_ref}
+          ref={pwRef}
           placeholder="비밀번호를 입력해주세요"
         ></input>
       </LoginForm>
