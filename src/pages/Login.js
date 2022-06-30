@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // redux
 import { useDispatch } from "react-redux";
 // redux-toolkit
-import { loginA } from "../redux/modules/userSlice";
+import { loginA, onSilentRefresh } from "../redux/modules/userSlice";
 // local storage - logout
 import { removeToken } from "../shared/localStorage";
 
@@ -49,6 +49,7 @@ function Login() {
       <button onClick={() => LoginDispatch()}>로그인</button>
       <button onClick={() => navigate("/Register")}>회원가입</button>
       <button onClick={() => removeToken(alert("로그아웃"))}>로그아웃</button>
+      <button onClick={() => onSilentRefresh()}>리프레시 토큰</button>
     </Container>
   );
 }
