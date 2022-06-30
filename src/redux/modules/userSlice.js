@@ -6,7 +6,9 @@ import { setToken } from "../../shared/localStorage";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: { list: [] },
+  initialState: {
+    isLogin: false,
+  },
   reducers: {
     checkLogin: (state, action) => {
       state.list.push(action.payload);
