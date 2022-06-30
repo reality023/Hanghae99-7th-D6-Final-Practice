@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {instance} from "../../shared/axios"
+import { instance } from "../../shared/axios"
 
 export const getDataDB = () => {
   return async (dispatch) => {
@@ -27,20 +27,20 @@ export const addDataDB = (data) => {
 };
 
 //Reducer
-const postSlice = createSlice ({
- name:"post",
- initialState:{
-  list:[]
- },
- reducers:{
-  setData: (state, action) => {
-    state.list = action.payload;
+const postSlice = createSlice({
+  name: "post",
+  initialState: {
+    list: []
   },
-  addData: (state, action) => {
-    state.list.push(action.payload);
-  },
- }
+  reducers: {
+    setData: (state, action) => {
+      state.list = action.payload;
+    },
+    addData: (state, action) => {
+      state.list.push(action.payload);
+    },
+  }
 });
 
-export const {setData, addData}  = postSlice.actions;
+export const { setData, addData } = postSlice.actions;
 export default postSlice.reducer;
