@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Social from "./pages/Social";
 import Write from "./pages/Write";
 import AddMemo from "./pages/AddMemo";
+import ModifyMemo from "./pages/ModifyMemo";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/social" element={<Social />} />
         <Route path="/write" element={<Write />} />
         <Route path="/addmemo" element={<AddMemo />} />
+        <Route path="/modifymemo/:id" element={<ModifyMemo />} />
         <Route path="/" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

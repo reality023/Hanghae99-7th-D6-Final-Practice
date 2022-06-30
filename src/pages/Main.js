@@ -13,6 +13,10 @@ function Main () {
     console.log(postList);
   }, []);
 
+  useEffect(() => {
+    console.log(postList) // id 확인 방법
+  },[postList])
+
   return (
     <div>
      {postList.boardList?.map((v,i) => {

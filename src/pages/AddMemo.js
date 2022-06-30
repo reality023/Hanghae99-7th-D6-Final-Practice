@@ -10,7 +10,7 @@ const AddMemo = () => {
   const statusRef = useRef();
   const boardTypeRef = useRef();
 
-  const onSubmit = (e) => {
+  const onADD = (e) => {
     e.preventDefault();
     const data = {
       title: titletRef.current.value,
@@ -27,7 +27,7 @@ const AddMemo = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onADD}>
       <input type="text" ref={titletRef}/>
       <input type="text" ref={contentRef}/>
       <select ref={statusRef}>
