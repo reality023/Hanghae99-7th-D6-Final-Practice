@@ -1,8 +1,10 @@
+// toolkit
 import { createSlice } from "@reduxjs/toolkit";
-
-import { instance } from "../../shared/axios";
-
+// axios, refresh
+import { refresh } from "../../shared/axiosRefresh";
+// Token Save
 import { setToken } from "../../shared/localStorage";
+
 
 const userSlice = createSlice({
   name: "user",
@@ -21,7 +23,7 @@ const userSlice = createSlice({
 export const registerA = (username, nickname, password) => {
   return async function (dispatch) {
     try {
-      const response = await instance.post("/user/signup", {
+      const response = await refresh.post("user/signup", {
         username,
         nickname,
         password,
@@ -40,22 +42,39 @@ export const registerA = (username, nickname, password) => {
 export const loginA = (username, password) => {
   return async function (dispatch) {
     try {
-      const response = await instance.post("/user/login", {
+      const response = await refresh.post("/user/login", {
         username: username,
         password: password,
       });
       dispatch(checkLogin(username, password));
-      setToken(response.data.accessToken, response.data.refreshToken);
-      // localStorage.setItem("user_name", response.data.username); 아이디랑 닉네임을 더 넣어줄수도. 필요가있나 ?
-      // localStorage.setItem("user_id", response.data.nickname);
+      onLoginSuccess(response);
       alert("로그인 되었습니다");
-      // window.location.replace("/Main"); // Main 완성되면 주석풀기
+      window.location.replace("/");
       console.log(response);
     } catch (error) {
       alert("아이디와 비밀번호를 확인해주세요");
       console.log(error);
     }
   };
+};
+
+// 토큰 재발급 refresh Token
+export const onSilentRefresh = (response) => {
+  refresh
+    .post("/user/refresh")
+    .then(onLoginSuccess)
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const JWT_EXPIRY_TIME = 3600 * 1000; // 60분
+export const onLoginSuccess = (response) => {
+  console.log(response.data);
+  setToken(response.data.accessToken, response.data.refreshToken);
+
+  // accessToken 만료하기 1분 전에 로그인 연장
+  setTimeout(onSilentRefresh, JWT_EXPIRY_TIME - 60000); // 60분 - 1분(밀리세컨드)
 };
 
 export const { checkLogin, createUser } = userSlice.actions;

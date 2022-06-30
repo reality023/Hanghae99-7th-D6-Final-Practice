@@ -1,12 +1,14 @@
+// Login에 쓸 토큰재발급 전용
+
 import axios from "axios";
 
-export const instance = axios.create({
+export const refresh = axios.create({
   baseURL: "http://whitewise.shop/",
 });
 
-instance.interceptors.request.use(
+refresh.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("refreshToken");
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
