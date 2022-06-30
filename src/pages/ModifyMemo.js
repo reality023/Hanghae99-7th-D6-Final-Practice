@@ -16,7 +16,7 @@ const ModifyMemo = () => {
     // dispatch(getDataDB()); // PASS
   }, []);
 
-  const onSubmit = (e) => {
+  const onModify = (e) => {
     e.preventDefault(); // form 새로고침 기능을 막아주는 코드
 
     const data = {
@@ -35,7 +35,7 @@ const ModifyMemo = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>{/* form 안에서 엔터키를 누르거나 안에 있는 버튼을 누른 경우 => onSubmit */}
+    <form onSubmit={onModify}>{/* form 안에서 엔터키를 누르거나 안에 있는 버튼을 누른 경우 => onSubmit */}
       <input type="text" ref={titletRef} />
       <input type="text" ref={contentRef} />
       <select ref={statusRef}>

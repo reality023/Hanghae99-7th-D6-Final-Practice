@@ -14,7 +14,6 @@ export const getDataDB = () => {
 
 export const addDataDB = (data) => {
   return async (dispatch) => {
-
     try {
       const response = await instance.post("/board", data);
       console.log(response)
@@ -25,17 +24,17 @@ export const addDataDB = (data) => {
     }
   };
 };
-// export const removeDataDB = (id) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await instance.delete(`/board/${id}`);
-//       dispatch(removeData(id));
-//     } catch (err) {
-//       console.log(err);
-//       window.alert(err.response.data.message);
-//     }
-//   }
-// }
+export const removeDataDB = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await instance.delete(`/board/${id}`);
+      dispatch(removeData(id));
+    } catch (err) {
+      console.log(err);
+      window.alert(err.response.data.message);
+    }
+  }
+}
 
 export const modifyDataDB = (id, data) => { // id: event, data: data
   return async (dispatch) => {
@@ -54,6 +53,10 @@ const postSlice = createSlice({
   name: "post",
   initialState: {
     list: []
+  },
+  reducers:{
+  setData: (state, action) => {
+    state.list = action.payload;
   },
   addData: (state, action) => {
     state.list.push(action.payload);
@@ -85,7 +88,7 @@ const postSlice = createSlice({
     );
   }
  }
-);
+});
 
-export const {setData, addData,  removeData, modifyData }  = postSlice.actions;
+export const {setData, addData, removeData, modifyData }  = postSlice.actions;
 export default postSlice.reducer;
